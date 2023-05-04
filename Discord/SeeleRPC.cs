@@ -52,17 +52,22 @@ namespace SeeleRichPresence.Discord
 
         public static void Start()
         {
+
+            var isRunning = false;
+
             while (true)
             {
                 Process[] starRail = Process.GetProcessesByName(game);
 
-                if (starRail.Length > 0)
+                if (starRail.Length > 0 && isRunning)
                 {
-                    SeeleRPC.RPCStart();
+                    RPCStart();
+                    isRunning = true;
                 }
                 else
                 {
-                    SeeleRPC.Cancel();
+                    Cancel();
+                    isRunning = true;
                 }
                 Thread.Sleep(1000);
             }

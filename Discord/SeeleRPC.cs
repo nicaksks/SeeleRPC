@@ -61,8 +61,17 @@ namespace SeeleRichPresence.Discord
 
                 if (starRail.Length > 0 && isRunning)
                 {
+                    
+                    if(presence.Timestamps == null)
+                    {
+                        presence.Timestamps = Timestamps.Now;
+                    }
                     RPCStart();
                     isRunning = true;
+                }
+                else if(starRail.Length == 0 && presence.Timestamps != null)
+                {
+                    presence.Timestamps = null;
                 }
                 else
                 {

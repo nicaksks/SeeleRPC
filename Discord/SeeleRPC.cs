@@ -1,5 +1,7 @@
 ﻿using DiscordRPC;
+using SeeleRichPresence.Api;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace SeeleRichPresence.Discord
 {
@@ -21,13 +23,20 @@ namespace SeeleRichPresence.Discord
             }
         };
 
-        private static void RPCStart()
+        private async static void RPCStart()
         {
             Config config = (Config)Config.RPC();
 
+            if(config.Uuid == null || config.Uuid.Length == 0)
+            {
+                throw new ArgumentNullException("Uuid", "Missing Uuid");
+            }
+
+            var account = await new StarRail(config.Uuid).Api();
+
             presence.Timestamps = Timestamps.Now;
-            presence.Details = config.Details;
-            presence.State = config.Message;
+            presence.Details = $"{account?.NickName} | LvL: {account?.Level} | Achv: {account?.PlayerSpaceInfo?.AchievementCount}";
+            presence.State = $"{account?.Signature}";
             presence.Buttons = new Button[] {
                 new Button() { Label = "View Profile", Url = config.Profile },
                 new Button() { Label = "HoYoLab Profile", Url = config.Hoyolab },

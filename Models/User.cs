@@ -2,34 +2,34 @@
 {
     public class ChallengeData
     {
-        public int PreMazeGroupIndex { get; set; }
+        public int NoneScheduleMaxLevel { get; set; }
     }
 
-    public class PlayerDetailInfo
+    public class DetailInfo
     {
         public int UID { get; set; }
         public int CurFriendCount { get; set; }
         public int WorldLevel { get; set; }
         public string? Signature { get; set; }
-        public string? NickName { get; set; }
+        public string? Nickname { get; set; }
         public int Birthday { get; set; }
         public int Level { get; set; }
-        public PlayerSpaceInfo? PlayerSpaceInfo { get; set; }
+        public RecordInfo? RecordInfo { get; set; }
         public int HeadIconID { get; set; }
     }
 
-    public class PlayerSpaceInfo
+    public class RecordInfo
     {
-        public ChallengeData? ChallengeData { get; set; }
-        public int PassAreaProgress { get; set; }
-        public int LightConeCount { get; set; }
+        public ChallengeData? ChallengeInfo { get; set; }
+        public int MaxRogueChallengeScore { get; set; }
+        public int EquipmentCount { get; set; }
         public int AvatarCount { get; set; }
         public int AchievementCount { get; set; }
     }
 
     public class Root
     {
-        public PlayerDetailInfo? PlayerDetailInfo { get; set; }
+        public DetailInfo? DetailInfo { get; set; }
     }
 
 

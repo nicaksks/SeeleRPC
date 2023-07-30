@@ -13,7 +13,7 @@ namespace SeeleRichPresence.Api
             this.uuid = uuid;
         }
 
-        public async Task<PlayerDetailInfo> Api()
+        public async Task<DetailInfo> Api()
         {
             var httpClient = new HttpClient();
             var response = await httpClient.GetAsync($"{url}/{uuid}?lang=en");
@@ -25,7 +25,7 @@ namespace SeeleRichPresence.Api
                 throw new Exception("Invalid Uuid");
             }
 
-            return data?.PlayerDetailInfo;
+            return data?.DetailInfo;  
         }
     }
 }

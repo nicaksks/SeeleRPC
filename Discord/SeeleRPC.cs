@@ -35,7 +35,7 @@ namespace SeeleRichPresence.Discord
             var account = await new StarRail(config.Uuid).Api();
 
             presence.Timestamps = Timestamps.Now;
-            presence.Details = $"{account?.NickName} | LvL: {account?.Level} | Achv: {account?.PlayerSpaceInfo?.AchievementCount}";
+            presence.Details = $"{account?.Nickname} | LvL: {account?.Level} | Achv: {account?.RecordInfo?.AchievementCount}";
             presence.State = $"{account?.Signature}";
             presence.Buttons = new Button[] {
                 new Button() { Label = "View Profile", Url = config.Profile },
